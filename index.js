@@ -11,4 +11,8 @@ app.use(express.static("public"))
 let io = socket(server)
 io.on("connection", socket => {
     console.log("made socket connection with socket ID:", socket.id);
+    // on listening to socket emit event by the Server
+    socket.on("chat", data => {
+        io.sockets.emit("chat", data) // sockets is the collection of all existing sockets
+    })
 })
