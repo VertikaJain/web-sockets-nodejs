@@ -15,4 +15,8 @@ io.on("connection", socket => {
     socket.on("chat", data => {
         io.sockets.emit("chat", data) // sockets is the collection of all existing sockets
     })
+
+    socket.on("typing", data => {
+        socket.broadcast.emit("typing", data) //broadcasting the message to every client except the one who sent it
+    })
 })
